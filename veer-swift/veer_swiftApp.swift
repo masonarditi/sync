@@ -2,16 +2,27 @@
 //  veer_swiftApp.swift
 //  veer-swift
 //
-//  Created by Mason on 4/22/25.
-//
 
 import SwiftUI
 
 @main
 struct veer_swiftApp: App {
+    @State private var isLoading = true
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Group {
+                if isLoading {
+                    LoadingView()
+                } else {
+                    ContentView()
+                }
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    isLoading = false
+                }
+            }
         }
     }
 }
