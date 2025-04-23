@@ -1,7 +1,7 @@
 // HomeView.swift
 import SwiftUI
 
-// MARK: – Model
+// MARK: – Model & Sample Data
 struct Entrepreneur: Identifiable {
     let id = UUID()
     let name: String
@@ -12,8 +12,6 @@ struct Entrepreneur: Identifiable {
     let imageName: String
 }
 
-// Sample data – add these images to Assets.xcassets:
-// “entrepreneur1”, “entrepreneur2”, “entrepreneur3”
 let sampleEntrepreneurs: [Entrepreneur] = [
     .init(name: "Alice Johnson",
           tagline: "Early-stage startup founder",
@@ -37,27 +35,20 @@ let sampleEntrepreneurs: [Entrepreneur] = [
 
 struct HomeView: View {
     // MARK: – Action Buttons
-    struct ActionButton {
+    struct ActionButton: Identifiable {
         let id: Int
-        let image: String
+        let systemImage: String
         let color: Color
-        let height: CGFloat
     }
     private let buttons: [ActionButton] = [
-        .init(id: 0, image: "arrow.counterclockwise",
-              color: Color(red: 247/255, green: 181/255, blue: 50/255),
-              height: 47),
-        .init(id: 1, image: "xmark",
-              color: Color(red: 250/255, green: 73/255, blue: 95/255),
-              height: 55),
-        .init(id: 2, image: "suit.heart.fill",
-              color: Color(red: 60/255, green: 229/255, blue: 184/255),
-              height: 55)
+        .init(id: 0, systemImage: "arrow.counterclockwise", color: .yellow),
+        .init(id: 1, systemImage: "xmark",                 color: .red),
+        .init(id: 2, systemImage: "suit.heart.fill",       color: .green)
     ]
 
     // MARK: – State
-    @State private var cards = [Entrepreneur]()
-    @State private var forcedSwipeValues: [Int: CGFloat?] = [:]
+    @State private var cards = sampleEntrepreneurs
+    @State private var forcedSwipeValues: [UUID: CGFloat?] = [:]
 
     var body: some View {
         ZStack {
@@ -65,69 +56,58 @@ struct HomeView: View {
                 .ignoresSafeArea()
 
             VStack {
-                if cards.isEmpty {
-                    emptyStateView
-                } else {
-                    ZStack {
-                        ForEach(cards.indices, id: \.self) { idx in
-                            let isTop = idx == cards.count - 1
-                            CardView(
-                                card: cards[idx],
-                                forcedSwipe: isTop
-                                    ? swipeBinding(for: idx)
-                                    : .constant(nil),
-                                onSwiped: {
-                                    cards.remove(at: idx)
-                                },
-                                onMatch: { _ in /* no-op */ }
-                            )
-                            .shadow(radius: 5)
-                        }
+                Spacer()
+
+                // ─── Card Stack ──────────────────────────
+                ZStack {
+                    ForEach(cards) { card in
+                        let isTop = card.id == cards.last?.id
+                        CardView(
+                            card: card,
+                            forcedSwipe: isTop
+                                ? swipeBinding(for: card.id)
+                                : .constant(nil),
+                            onSwiped: { remove(card) },
+                            onMatch:   { _ in }
+                        )
+                        .frame(
+                            width: UIScreen.main.bounds.width - 32,
+                            height: 450
+                        )
+                        .shadow(radius: 5)
                     }
                 }
+                .frame(
+                    width: UIScreen.main.bounds.width - 32,
+                    height: 450
+                )
 
                 Spacer()
 
-                HStack {
-                    Spacer()
-                    ForEach(buttons, id: \.id) { btn in
+                // ─── Action Buttons ──────────────────────
+                HStack(spacing: 60) {
+                    ForEach(buttons) { btn in
                         Button {
                             handleButtonTap(btn.id)
                         } label: {
-                            Image(systemName: btn.image)
-                                .font(.system(size: 23, weight: .heavy))
+                            Image(systemName: btn.systemImage)
+                                .font(.system(size: 32, weight: .heavy))
                                 .foregroundColor(btn.color)
-                                .frame(width: btn.height, height: btn.height)
+                                .frame(width: 64, height: 64)
                                 .background(Color.white)
-                                .cornerRadius(btn.height / 2)
+                                .clipShape(Circle())
                                 .shadow(radius: 3)
                         }
-                        Spacer()
                     }
                 }
-                .padding(.vertical, 8)
+                .padding(.bottom, 40)
                 .opacity(cards.isEmpty ? 0.5 : 1)
                 .disabled(cards.isEmpty)
             }
-            .onAppear { reloadCards() }
         }
     }
 
-    private var emptyStateView: some View {
-        VStack {
-            Spacer()
-            Image(systemName: "heart.slash.fill")
-                .font(.system(size: 70))
-                .foregroundColor(.gray)
-            Text("No more connections")
-                .font(.title2)
-                .foregroundColor(.gray)
-            Text("Check back later")
-                .font(.callout)
-                .foregroundColor(.gray.opacity(0.8))
-            Spacer()
-        }
-    }
+    // MARK: – Helpers
 
     private func handleButtonTap(_ id: Int) {
         guard !cards.isEmpty || id == 0 else { return }
@@ -135,27 +115,29 @@ struct HomeView: View {
         case 0:
             reloadCards()
         case 1:
-            if let top = cards.indices.last {
-                setSwipeValue(for: top, to: -500)
+            if let top = cards.last {
+                forcedSwipeValues[top.id] = -500
             }
         case 2:
-            if let top = cards.indices.last {
-                setSwipeValue(for: top, to: 500)
+            if let top = cards.last {
+                forcedSwipeValues[top.id] = 500
             }
-        default:
-            break
+        default: break
         }
     }
 
-    private func setSwipeValue(for index: Int, to value: CGFloat) {
-        forcedSwipeValues[index] = value
+    private func swipeBinding(for id: UUID) -> Binding<CGFloat?> {
+        Binding(
+            get: { forcedSwipeValues[id] ?? nil },
+            set: { forcedSwipeValues[id] = $0 }
+        )
     }
 
-    private func swipeBinding(for index: Int) -> Binding<CGFloat?> {
-        Binding(
-            get: { forcedSwipeValues[index] ?? nil },
-            set: { forcedSwipeValues[index] = $0 }
-        )
+    private func remove(_ card: Entrepreneur) {
+        withAnimation {
+            cards.removeAll { $0.id == card.id }
+            forcedSwipeValues[card.id] = nil
+        }
     }
 
     private func reloadCards() {
