@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		CEFD5CAC2DB8B70600A230B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEFD5C932DB8B70500A230B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEFD5C9A2DB8B70500A230B5;
+			remoteInfo = "veer-swift";
+		};
+		CEFD5CB62DB8B70600A230B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEFD5C932DB8B70500A230B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEFD5C9A2DB8B70500A230B5;
+			remoteInfo = "veer-swift";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CEFD5C9B2DB8B70500A230B5 /* veer-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "veer-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEFD5CAB2DB8B70600A230B5 /* veer-swiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "veer-swiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEFD5CB52DB8B70600A230B5 /* veer-swiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "veer-swiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CEFD5C9D2DB8B70500A230B5 /* veer-swift */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "veer-swift";
+			sourceTree = "<group>";
+		};
+		CEFD5CAE2DB8B70600A230B5 /* veer-swiftTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "veer-swiftTests";
+			sourceTree = "<group>";
+		};
+		CEFD5CB82DB8B70600A230B5 /* veer-swiftUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "veer-swiftUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CEFD5C982DB8B70500A230B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEFD5CA82DB8B70600A230B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEFD5CB22DB8B70600A230B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CEFD5C922DB8B70500A230B5 = {
+			isa = PBXGroup;
+			children = (
+				CEFD5C9D2DB8B70500A230B5 /* veer-swift */,
+				CEFD5CAE2DB8B70600A230B5 /* veer-swiftTests */,
+				CEFD5CB82DB8B70600A230B5 /* veer-swiftUITests */,
+				CEFD5C9C2DB8B70500A230B5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CEFD5C9C2DB8B70500A230B5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CEFD5C9B2DB8B70500A230B5 /* veer-swift.app */,
+				CEFD5CAB2DB8B70600A230B5 /* veer-swiftTests.xctest */,
+				CEFD5CB52DB8B70600A230B5 /* veer-swiftUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CEFD5C9A2DB8B70500A230B5 /* veer-swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEFD5CBF2DB8B70600A230B5 /* Build configuration list for PBXNativeTarget "veer-swift" */;
+			buildPhases = (
+				CEFD5C972DB8B70500A230B5 /* Sources */,
+				CEFD5C982DB8B70500A230B5 /* Frameworks */,
+				CEFD5C992DB8B70500A230B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				CEFD5C9D2DB8B70500A230B5 /* veer-swift */,
+			);
+			name = "veer-swift";
+			packageProductDependencies = (
+			);
+			productName = "veer-swift";
+			productReference = CEFD5C9B2DB8B70500A230B5 /* veer-swift.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CEFD5CAA2DB8B70600A230B5 /* veer-swiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEFD5CC22DB8B70600A230B5 /* Build configuration list for PBXNativeTarget "veer-swiftTests" */;
+			buildPhases = (
+				CEFD5CA72DB8B70600A230B5 /* Sources */,
+				CEFD5CA82DB8B70600A230B5 /* Frameworks */,
+				CEFD5CA92DB8B70600A230B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEFD5CAD2DB8B70600A230B5 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CEFD5CAE2DB8B70600A230B5 /* veer-swiftTests */,
+			);
+			name = "veer-swiftTests";
+			packageProductDependencies = (
+			);
+			productName = "veer-swiftTests";
+			productReference = CEFD5CAB2DB8B70600A230B5 /* veer-swiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CEFD5CB42DB8B70600A230B5 /* veer-swiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEFD5CC52DB8B70600A230B5 /* Build configuration list for PBXNativeTarget "veer-swiftUITests" */;
+			buildPhases = (
+				CEFD5CB12DB8B70600A230B5 /* Sources */,
+				CEFD5CB22DB8B70600A230B5 /* Frameworks */,
+				CEFD5CB32DB8B70600A230B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEFD5CB72DB8B70600A230B5 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CEFD5CB82DB8B70600A230B5 /* veer-swiftUITests */,
+			);
+			name = "veer-swiftUITests";
+			packageProductDependencies = (
+			);
+			productName = "veer-swiftUITests";
+			productReference = CEFD5CB52DB8B70600A230B5 /* veer-swiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CEFD5C932DB8B70500A230B5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					CEFD5C9A2DB8B70500A230B5 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					CEFD5CAA2DB8B70600A230B5 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = CEFD5C9A2DB8B70500A230B5;
+					};
+					CEFD5CB42DB8B70600A230B5 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = CEFD5C9A2DB8B70500A230B5;
+					};
+				};
+			};
+			buildConfigurationList = CEFD5C962DB8B70500A230B5 /* Build configuration list for PBXProject "veer-swift" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CEFD5C922DB8B70500A230B5;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = CEFD5C9C2DB8B70500A230B5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CEFD5C9A2DB8B70500A230B5 /* veer-swift */,
+				CEFD5CAA2DB8B70600A230B5 /* veer-swiftTests */,
+				CEFD5CB42DB8B70600A230B5 /* veer-swiftUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CEFD5C992DB8B70500A230B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEFD5CA92DB8B70600A230B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEFD5CB32DB8B70600A230B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CEFD5C972DB8B70500A230B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEFD5CA72DB8B70600A230B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEFD5CB12DB8B70600A230B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CEFD5CAD2DB8B70600A230B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEFD5C9A2DB8B70500A230B5 /* veer-swift */;
+			targetProxy = CEFD5CAC2DB8B70600A230B5 /* PBXContainerItemProxy */;
+		};
+		CEFD5CB72DB8B70600A230B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEFD5C9A2DB8B70500A230B5 /* veer-swift */;
+			targetProxy = CEFD5CB62DB8B70600A230B5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CEFD5CBD2DB8B70600A230B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CEFD5CBE2DB8B70600A230B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CEFD5CC02DB8B70600A230B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"veer-swift/Preview Content\"";
+				DEVELOPMENT_TEAM = SNZL9DWHSZ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "mason.veer-swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CEFD5CC12DB8B70600A230B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"veer-swift/Preview Content\"";
+				DEVELOPMENT_TEAM = SNZL9DWHSZ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "mason.veer-swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CEFD5CC32DB8B70600A230B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SNZL9DWHSZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "mason.veer-swiftTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/veer-swift.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/veer-swift";
+			};
+			name = Debug;
+		};
+		CEFD5CC42DB8B70600A230B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SNZL9DWHSZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "mason.veer-swiftTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/veer-swift.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/veer-swift";
+			};
+			name = Release;
+		};
+		CEFD5CC62DB8B70600A230B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SNZL9DWHSZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "mason.veer-swiftUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "veer-swift";
+			};
+			name = Debug;
+		};
+		CEFD5CC72DB8B70600A230B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SNZL9DWHSZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "mason.veer-swiftUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "veer-swift";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CEFD5C962DB8B70500A230B5 /* Build configuration list for PBXProject "veer-swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEFD5CBD2DB8B70600A230B5 /* Debug */,
+				CEFD5CBE2DB8B70600A230B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEFD5CBF2DB8B70600A230B5 /* Build configuration list for PBXNativeTarget "veer-swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEFD5CC02DB8B70600A230B5 /* Debug */,
+				CEFD5CC12DB8B70600A230B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEFD5CC22DB8B70600A230B5 /* Build configuration list for PBXNativeTarget "veer-swiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEFD5CC32DB8B70600A230B5 /* Debug */,
+				CEFD5CC42DB8B70600A230B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEFD5CC52DB8B70600A230B5 /* Build configuration list for PBXNativeTarget "veer-swiftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEFD5CC62DB8B70600A230B5 /* Debug */,
+				CEFD5CC72DB8B70600A230B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CEFD5C932DB8B70500A230B5 /* Project object */;
+}
