@@ -8,25 +8,41 @@ struct CardView: View {
     var onMatch: (String) -> Void
 
     @State private var translation: CGSize = .zero
-    @State private var page = 1
 
     var body: some View {
         ZStack {
-            // Image fills the parent frame
-            Image(card.imageName)
-                .resizable()
-                .scaledToFill()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .clipped()
-                .overlay(
-                    LinearGradient(
-                        gradient: Gradient(colors: [Color.black.opacity(0.7), .clear]),
-                        startPoint: .bottom,
-                        endPoint: .center
-                    )
-                )
+            // Card background & shadow
+            RoundedRectangle(cornerRadius: 15)
+                .fill(Color(white: 0.97))
+                .shadow(radius: 5)
 
-            // LIKE/NOPE overlays
+            // Content
+            VStack(spacing: 12) {
+                // space for avatar
+                Spacer().frame(height: 44)
+
+                Text(card.name)
+                    .font(.headline)
+                    .foregroundColor(.black)
+
+                Text(card.tagline)
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+
+                Text(card.expertise)
+                    .font(.subheadline)
+                    .foregroundColor(.black)
+
+                Text(card.location)
+                    .font(.caption)
+                    .foregroundColor(.gray)
+
+                Spacer()
+            }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 16)
+
+            // LIKE/NOPE
             VStack {
                 HStack {
                     if translation.width > 0 {
@@ -37,31 +53,43 @@ struct CardView: View {
                         statusLabel("NOPE", color: .red, angle: 20)
                     }
                 }
-                .padding(.top, 40)
-                .padding(.horizontal, 25)
+                .padding(.top, 24)
+                .padding(.horizontal, 20)
                 Spacer()
             }
-
-            // Paging overlays
-            Group {
-                if page == 1   { pageOne() }
-                else if page == 2 { pageTwo() }
-                else            { pageThree() }
-            }
         }
-        .cornerRadius(15)
-        .shadow(radius: 5)
+        .frame(
+            width: UIScreen.main.bounds.width - 32,
+            height: 540
+        )
+        // Avatar overlapping
+        .overlay(
+            Circle()
+                .fill(Color.white)
+                .frame(width: 88, height: 88)
+                .overlay(
+                    Image(card.imageName)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 80, height: 80)
+                        .clipShape(Circle())
+                )
+                .overlay(
+                    Circle().stroke(Color.purple, lineWidth: 3)
+                )
+                .offset(y: -44),
+            alignment: .top
+        )
         .offset(x: translation.width)
         .rotationEffect(
-            .degrees(Double(translation.width / (UIScreen.main.bounds.width - 32)) * 25),
+            .degrees(Double(translation.width / (UIScreen.main.bounds.width - 32)) * 15),
             anchor: .bottom
         )
         .gesture(dragGesture())
-        .onTapGesture { page = page % 3 + 1 }
         .onChange(of: forcedSwipe) { val in
             guard let x = val else { return }
             withAnimation(.easeInOut) { translation.width = x }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 onSwiped()
                 translation = .zero
             }
@@ -90,70 +118,34 @@ struct CardView: View {
     }
 
     private func scheduleRemoval() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             onSwiped()
             translation = .zero
         }
     }
 
-    // MARK: — Status label
+    // MARK: — LIKE/NOPE label
     private func statusLabel(_ text: String, color: Color, angle: Double) -> some View {
         Text(text)
             .tracking(3)
-            .font(.title)
+            .font(.title2)
             .padding(.horizontal)
             .foregroundColor(color)
-            .overlay(RoundedRectangle(cornerRadius: 5).stroke(color, lineWidth: 3))
+            .overlay(
+                RoundedRectangle(cornerRadius: 5).stroke(color, lineWidth: 3)
+            )
             .rotationEffect(.degrees(angle))
-    }
-
-    // MARK: — Page overlays
-    private func pageOne() -> some View {
-        VStack(alignment: .leading) {
-            Spacer()
-            Text(card.name)
-                .font(.largeTitle).bold().foregroundColor(.white)
-            Text(card.tagline)
-                .font(.title2).foregroundColor(.white.opacity(0.9))
-            Spacer().frame(height: 48)
-        }
-        .padding(16)
-    }
-
-    private func pageTwo() -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("💡 Expertise:")
-                .font(.headline).foregroundColor(.white)
-            Text(card.expertise)
-                .font(.title2).foregroundColor(.white)
-            Text("📍 \(card.location)")
-                .font(.subheadline).foregroundColor(.white.opacity(0.8))
-            Spacer()
-        }
-        .padding(16)
-    }
-
-    private func pageThree() -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("🔗 Website:")
-                .font(.headline).foregroundColor(.white)
-            Text(card.website)
-                .font(.title3).foregroundColor(.blue)
-            Spacer()
-        }
-        .padding(16)
     }
 }
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         CardView(
-            card: sampleEntrepreneurs.first!,
+            card: sampleEntrepreneurs[0],
             forcedSwipe: .constant(nil),
             onSwiped: {},
             onMatch: { _ in }
         )
-        .frame(width: UIScreen.main.bounds.width - 32, height: 450)
-        .preferredColorScheme(.dark)
+        .preferredColorScheme(.light)
     }
 }

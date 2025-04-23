@@ -21,7 +21,7 @@ struct HomeView: View {
             Color(.black).opacity(0.95).ignoresSafeArea()
 
             VStack {
-                Spacer()
+                Spacer(minLength: 110)
 
                 // ─── card stack ────────────────────────────
                 ZStack {
