@@ -9,108 +9,65 @@ struct CardView: View {
 
     @State private var translation: CGSize = .zero
 
-    // Split out for performance
     private var expertiseTags: [String] {
         card.expertise.components(separatedBy: " · ")
     }
 
     var body: some View {
         ZStack {
-            // Background uses Apple’s material
+            // ─── Background ─────────────────────────────
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(.regularMaterial)
                 .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
 
-            VStack(spacing: 14) {
-                Spacer().frame(height: 50)
+            VStack(spacing: 12) {
+                Spacer().frame(height: 40)
 
-                // 1) Name — uses .largeTitle
+                // ─── Name & Info ─────────────────────────
                 Text(card.name)
-                    .font(.largeTitle.weight(.semibold))
+                    .font(.largeTitle)
+                    .fontWeight(.medium)
                     .multilineTextAlignment(.center)
 
-                // 2) Tagline — .subheadline
                 Text(card.tagline)
                     .font(.subheadline)
+                    .fontWeight(.medium)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
 
-                // 3) Company — .headline
                 Text(card.company)
                     .font(.headline)
+                    .fontWeight(.medium)
                     .multilineTextAlignment(.center)
 
-                // 4) Funding — .callout
                 Text("Funding: \(card.funding)")
                     .font(.callout)
+                    .fontWeight(.medium)
                     .foregroundColor(.purple)
                     .multilineTextAlignment(.center)
 
-                // 5) Bio — .body
                 Text(card.bio)
                     .font(.body)
+                    .fontWeight(.medium)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
 
-                // 6) Expertise tags — .caption
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 12) {
-                        ForEach(expertiseTags, id: \.self) { tag in
-                            Text(tag)
-                                .font(.caption)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 6)
-                                .background(Color.purple.opacity(0.2))
-                                .foregroundColor(.purple)
-                                .clipShape(Capsule())
-                        }
-                    }
-                    .padding(.horizontal, 16)
-                }
+                // ─── Expertise & Looking for ─────────────
+                expertiseSection
+                lookingForSection
 
-                // 7) Looking for — .caption
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 12) {
-                        ForEach(card.lookingFor, id: \.self) { need in
-                            Text(need)
-                                .font(.caption)
-                                .bold()
-                                .padding(.horizontal, 14)
-                                .padding(.vertical, 6)
-                                .background(Color.purple)
-                                .foregroundColor(.white)
-                                .clipShape(Capsule())
-                        }
-                    }
-                    .padding(.horizontal, 16)
-                }
+                // Push slider and bottom content down
+                Spacer()
 
-                // 8) Match score slider
-                HStack(spacing: 12) {
-                    Image(systemName: "thermometer.snowflake")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-
-                    Slider(
-                        value: .constant(Double(card.matchScore)),
-                        in: 1...10,
-                        step: 1
-                    )
-                    .disabled(true)
-                    .accentColor(.purple)
-
-                    Image(systemName: "flame.fill")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                .padding(.horizontal, 20)
+                // ─── Match Score Slider ──────────────────
+                matchScoreSlider
 
                 Spacer(minLength: 0)
             }
             .padding(20)
 
-            // LIKE / NOPE overlay
+            // ─── LIKE/NOPE Overlay ────────────────────
             likeNopeOverlay
         }
         .frame(width: UIScreen.main.bounds.width - 32,
@@ -126,7 +83,105 @@ struct CardView: View {
         }
     }
 
-    // MARK: — Overlays & Helpers
+    // MARK: — Subviews
+
+    private var expertiseSection: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 10) {
+                ForEach(expertiseTags, id: \.self) { tag in
+                    Text(tag)
+                        .font(.caption)
+                        .fontWeight(.medium)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .background(Color.purple.opacity(0.2))
+                        .foregroundColor(.purple)
+                        .clipShape(Capsule())
+                }
+            }
+            .padding(.horizontal, 16)
+        }
+    }
+
+    private var lookingForSection: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 10) {
+                ForEach(card.lookingFor, id: \.self) { need in
+                    Text(need)
+                        .font(.caption)
+                        .fontWeight(.medium)
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 6)
+                        .background(Color.purple)
+                        .foregroundColor(.white)
+                        .clipShape(Capsule())
+                }
+            }
+            .padding(.horizontal, 16)
+        }
+    }
+
+    // ─── matchScoreSlider ─────────────────────────────────────────
+    private var matchScoreSlider: some View {
+        GeometryReader { geo in
+            let totalW: CGFloat   = geo.size.width
+            let sidePad: CGFloat  = 16         // matches .padding(.horizontal,16)
+            let iconW: CGFloat    = 16         // your icon frames
+            let thumbW: CGFloat   = 32         // diameter of our custom thumb
+            
+            // full “track” under the slider (between icons)
+            let trackW = totalW - (sidePad*2 + iconW*2)
+            // how far the thumb can actually move
+            let movementW = trackW - thumbW
+            
+            // fraction from 0→1
+            let frac = CGFloat(card.matchScore - 1) / 9.0
+            
+            // center of thumb at minimum (score=1)
+            let startX = -totalW/2
+                         + sidePad
+                         + iconW
+                         + thumbW/2
+            
+            // final offset
+            let xOffset = startX + frac * movementW
+            
+            ZStack {
+                HStack(spacing: 8) {
+                    Image(systemName: "thermometer.snowflake")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .frame(width: iconW, height: iconW)
+                    
+                    Slider(value: .constant(Double(card.matchScore)),
+                           in: 1...10,
+                           step: 1)
+                        .disabled(true)
+                        .accentColor(.purple)
+                    
+                    Image(systemName: "flame.fill")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .frame(width: iconW, height: iconW)
+                }
+                .padding(.horizontal, sidePad)
+                
+                Circle()
+                    .fill(Color.white)
+                    .frame(width: thumbW, height: thumbW)
+                    .shadow(radius: 2)
+                    .overlay(
+                        Text("\(card.matchScore)")
+                            .font(.caption)
+                            .fontWeight(.medium)
+                            .foregroundColor(.purple)
+                    )
+                    .offset(x: xOffset)
+            }
+        }
+        .frame(height: 44)
+    }
+
 
     private var avatarOverlay: some View {
         ZStack {
@@ -134,7 +189,6 @@ struct CardView: View {
                 .fill(.ultraThinMaterial)
                 .frame(width: 90, height: 90)
                 .shadow(radius: 5)
-
             Image(card.imageName)
                 .resizable()
                 .scaledToFill()
@@ -161,17 +215,7 @@ struct CardView: View {
         }
     }
 
-    private func statusLabel(_ text: String, color: Color) -> some View {
-        Text(text)
-            .font(.headline)
-            .foregroundColor(color)
-            .padding(.horizontal, 12)
-            .padding(.vertical, 6)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .stroke(color, lineWidth: 2)
-            )
-    }
+    // MARK: — Helpers
 
     private var rotationAngle: Double {
         Double(translation.width / (UIScreen.main.bounds.width - 32)) * 12
@@ -205,16 +249,17 @@ struct CardView: View {
             translation = .zero
         }
     }
-}
 
-struct CardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView(
-            card: sampleEntrepreneurs[2],
-            forcedSwipe: .constant(nil),
-            onSwiped: {},
-            onMatch: { _ in }
-        )
-        .preferredColorScheme(.light)
+    private func statusLabel(_ text: String, color: Color) -> some View {
+        Text(text)
+            .font(.headline)
+            .fontWeight(.medium)
+            .foregroundColor(color)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .stroke(color, lineWidth: 2)
+            )
     }
 }
