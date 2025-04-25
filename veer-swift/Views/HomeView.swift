@@ -7,6 +7,7 @@ struct HomeView: View {
         let icon: String
         let color: Color
     }
+
     private let buttons = [
         ActionButton(id: 0, icon: "arrow.counterclockwise", color: .yellow),
         ActionButton(id: 1, icon: "xmark",                 color: .red),
@@ -18,7 +19,7 @@ struct HomeView: View {
 
     var body: some View {
         ZStack {
-            Color(.black).opacity(0.95).ignoresSafeArea()
+            Color.black.opacity(0.95).ignoresSafeArea()
 
             VStack {
                 Spacer(minLength: 110)
@@ -26,28 +27,28 @@ struct HomeView: View {
                 // ─── card stack ────────────────────────────
                 ZStack {
                     ForEach(cards) { card in
-                        let top = card.id == cards.last?.id
+                        let isTop = card.id == cards.last?.id
                         CardView(
                             card: card,
-                            forcedSwipe: top
+                            forcedSwipe: isTop
                                 ? Binding(
                                     get: { forcedSwipe[card.id] ?? nil },
                                     set: { forcedSwipe[card.id] = $0 }
                                   )
                                 : .constant(nil),
-                            onSwiped:   { remove(card) },
-                            onMatch:    { _ in }
+                            onSwiped: { remove(card) },
+                            onMatch:  { _ in }
                         )
                         .frame(
-                          width: UIScreen.main.bounds.width - 32,
-                          height: 450
+                            width: UIScreen.main.bounds.width - 32,
+                            height: 450
                         )
                         .shadow(radius: 5)
                     }
                 }
                 .frame(
-                  width: UIScreen.main.bounds.width - 32,
-                  height: 450
+                    width: UIScreen.main.bounds.width - 32,
+                    height: 450
                 )
 
                 Spacer()
@@ -66,25 +67,45 @@ struct HomeView: View {
                                 .clipShape(Circle())
                                 .shadow(radius: 3)
                         }
+                        // Only disable “discard” and “like” when empty
+                        .disabled(btn.id != 0 && cards.isEmpty)
+                        .opacity(btn.id != 0 && cards.isEmpty ? 0.5 : 1)
                     }
                 }
                 .padding(.bottom, 40)
-                .opacity(cards.isEmpty ? 0.5 : 1)
-                .disabled(cards.isEmpty)
             }
         }
     }
 
     private func tap(_ id: Int) {
         switch id {
-        case 0: cards = sampleEntrepreneurs; forcedSwipe = [:]
-        case 1: if let top = cards.last { forcedSwipe[top.id] = -500 }
-        case 2: if let top = cards.last { forcedSwipe[top.id] =  500 }
-        default: break
+        case 0:
+            // restart
+            withAnimation {
+                cards = sampleEntrepreneurs
+                forcedSwipe = [:]
+            }
+
+        case 1:
+            // swipe left
+            if let top = cards.last {
+                forcedSwipe[top.id] = -500
+            }
+
+        case 2:
+            // swipe right
+            if let top = cards.last {
+                forcedSwipe[top.id] = 500
+            }
+
+        default:
+            break
         }
     }
 
     private func remove(_ card: Entrepreneur) {
-        withAnimation { cards.removeAll { $0.id == card.id } }
+        withAnimation {
+            cards.removeAll { $0.id == card.id }
+        }
     }
 }
