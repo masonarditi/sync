@@ -9,7 +9,7 @@ struct CardView: View {
 
     @State private var translation: CGSize = .zero
 
-    // pre-split expertise for performance
+    // Pre-computed split for performance
     private var expertiseTags: [String] {
         card.expertise.components(separatedBy: " · ")
     }
@@ -20,10 +20,8 @@ struct CardView: View {
             content
             likeNopeOverlay
         }
-        .frame(
-            width: UIScreen.main.bounds.width - 32,
-            height: 540     // ← reduced from 620 to 540
-        )
+        .frame(width: UIScreen.main.bounds.width - 32,
+               height: 520)
         .overlay(avatarOverlay, alignment: .top)
         .offset(x: translation.width)
         .rotationEffect(.degrees(rotationAngle), anchor: .bottom)
@@ -35,58 +33,74 @@ struct CardView: View {
         }
     }
 
-    // ─── Subviews ────────────────────────────────────────────────────────────────
+    // MARK: — Subviews
 
     private var background: some View {
-        RoundedRectangle(cornerRadius: 15)
-            .fill(Color(white: 0.97))
-            .shadow(radius: 5)
+        RoundedRectangle(cornerRadius: 20, style: .continuous)
+            .fill(.regularMaterial)
+            .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
     }
 
     private var content: some View {
-        VStack(spacing: 16) {
-            Spacer().frame(height: 44)
+        VStack(spacing: 14) {
+            Spacer().frame(height: 50)
 
             Text(card.name)
-                .font(.system(size: 34, weight: .bold, design: .rounded))
+                .font(.title2.weight(.semibold))
                 .multilineTextAlignment(.center)
 
             Text(card.tagline)
                 .font(.subheadline)
-                .foregroundColor(.gray)
+                .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
 
             Text(card.company)
-                .font(.headline).bold()
+                .font(.headline.weight(.medium))
                 .multilineTextAlignment(.center)
 
             Text("Funding: \(card.funding)")
-                .font(.callout)
+                .font(.caption)
                 .foregroundColor(.purple)
                 .multilineTextAlignment(.center)
 
             Text(card.bio)
-                .font(.caption)
-                .foregroundColor(.gray)
+                .font(.caption2)
+                .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
 
+            expertiseSection
+            lookingForSection
+            matchScoreSection
+
+            Spacer(minLength: 0)
+        }
+        .padding(20)
+    }
+
+    private var expertiseSection: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
                 ForEach(expertiseTags, id: \.self) { tag in
                     Text(tag)
-                        .font(.caption).bold()
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
+                        .font(.caption2)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
                         .background(Color.purple.opacity(0.2))
                         .foregroundColor(.purple)
                         .clipShape(Capsule())
                 }
             }
+            .padding(.horizontal, 16)
+        }
+    }
 
+    private var lookingForSection: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
                 ForEach(card.lookingFor, id: \.self) { need in
                     Text(need)
-                        .font(.caption2).bold()
+                        .font(.caption2.weight(.bold))
                         .padding(.horizontal, 14)
                         .padding(.vertical, 6)
                         .background(Color.purple)
@@ -94,61 +108,63 @@ struct CardView: View {
                         .clipShape(Capsule())
                 }
             }
-
-            HStack {
-                Text("🥶")
-                Slider(value: .constant(Double(card.matchScore)),
-                       in: 1...10,
-                       step: 1)
-                    .disabled(true)
-                    .accentColor(.purple)
-                Text("🔥")
-            }
             .padding(.horizontal, 16)
-
-            Spacer(minLength: 0)
         }
-        .padding(.horizontal, 16)
-        .padding(.bottom, 16)
+    }
+
+    private var matchScoreSection: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "thermometer.snowflake")
+                .foregroundColor(.secondary)
+            Slider(
+                value: .constant(Double(card.matchScore)),
+                in: 1...10,
+                step: 1
+            )
+            .disabled(true)
+            .accentColor(.purple)
+            Image(systemName: "flame.fill")
+                .foregroundColor(.secondary)
+        }
+        .padding(.horizontal, 20)
+    }
+
+    private var avatarOverlay: some View {
+        ZStack {
+            Circle()
+                .fill(.ultraThinMaterial)
+                .frame(width: 90, height: 90)
+                .shadow(radius: 5)
+            Image(card.imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 80, height: 80)
+                .clipShape(Circle())
+        }
+        .offset(y: -45)
     }
 
     private var likeNopeOverlay: some View {
         VStack {
             HStack {
                 if translation.width > 0 {
-                    statusLabel("LIKE", color: .green, angle: -20)
+                    statusLabel("LIKE", color: .green)
                     Spacer()
                 } else if translation.width < 0 {
                     Spacer()
-                    statusLabel("NOPE", color: .red, angle: 20)
+                    statusLabel("NOPE", color: .red)
                 }
             }
             .padding(.top, 24)
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 24)
             Spacer()
         }
     }
 
-    private var avatarOverlay: some View {
-        Circle()
-            .fill(Color.white)
-            .frame(width: 88, height: 88)
-            .overlay(
-                Image(card.imageName)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 80, height: 80)
-                    .clipShape(Circle())
-            )
-            .overlay(Circle().stroke(Color.purple, lineWidth: 3))
-            .shadow(radius: 3)
-            .offset(y: -44)
-    }
-
-    // ─── Helpers ─────────────────────────────────────────────────────────────────
+    // MARK: — Helpers
 
     private var rotationAngle: Double {
-        Double(translation.width / (UIScreen.main.bounds.width - 32)) * 15
+        Double(translation.width / (UIScreen.main.bounds.width - 32)) * 12
     }
 
     private var dragGesture: some Gesture {
@@ -175,14 +191,16 @@ struct CardView: View {
         }
     }
 
-    private func statusLabel(_ text: String, color: Color, angle: Double) -> some View {
+    private func statusLabel(_ text: String, color: Color) -> some View {
         Text(text)
-            .tracking(3)
-            .font(.title2)
-            .padding(.horizontal)
+            .font(.headline)
             .foregroundColor(color)
-            .overlay(RoundedRectangle(cornerRadius: 5).stroke(color, lineWidth: 3))
-            .rotationEffect(.degrees(angle))
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .stroke(color, lineWidth: 2)
+            )
     }
 }
 
